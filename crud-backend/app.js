@@ -8,7 +8,7 @@ var path = require('path');
 
 var app = express();
 
-//const route = require('./routes/route');
+const route = require('./routes/route');
 
 //conect to the mongodb
 mongoose.connect('mongodb://localhost:27017/shoppinglist');
@@ -39,7 +39,7 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-//app.use('/api', route);
+app.use('/api', route);
 
 //testing server
 app.get('/',(req, res)=>{
