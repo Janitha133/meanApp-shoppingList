@@ -11,7 +11,7 @@ var app = express();
 const route = require('./routes/route');
 
 //conect to the mongodb
-mongoose.connect('mongodb://localhost:27017/shoppinglist');
+mongoose.connect('mongodb://localhost:27017/shoppinglist', { useNewUrlParser: true });
 
 //on connection
 mongoose.connection.on('connected',()=>{
@@ -49,4 +49,3 @@ app.get('/',(req, res)=>{
 app.listen(port,()=>{
     console.log('Server started at port:' + port);
 });
-
