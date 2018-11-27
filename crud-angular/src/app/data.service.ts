@@ -20,4 +20,9 @@ export class DataService {
     return this.http.post('http://localhost:3000/api/item', newItem, {headers: headers})
       .pipe(map(res => res));
   }
+
+  deleteShoppingItem(id){
+    return this.http.delete('http://localhost:3000/api/item/'+id)
+    .pipe(map(res => res));
+  }
 }

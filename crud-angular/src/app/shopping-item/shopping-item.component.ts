@@ -22,7 +22,30 @@ export class ShoppingItemComponent implements OnInit {
   }
 
   addItem(frm){
-    console.log(frm.value);
+      let newItem: Item = {
+      itemName: frm.value.itemName,
+      itemQuantity: frm.value.itemQuantity,
+      itemBought: false
+    }
+    this.dataService.addShoppingItem(newItem)
+      .subscribe(item => {
+        console.log(item);
+        this.getItems();
+      });
+  }
+
+  deleteItem(id){
+    this.dataService.deleteShoppingItem(id)
+      .subscribe(data => {
+        console.log(data);
+        if(data == 1){
+          for(let i = 0; i < this.shoppingItemList.length; i++){
+            if(id == this.shoppingItemList[i]._id){
+              this.shoppingItemList.splice(i,1);
+            }
+          }
+        }
+      })
   }
   
   ngOnInit() {
