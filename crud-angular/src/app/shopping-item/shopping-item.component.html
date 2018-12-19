@@ -1,4 +1,4 @@
-<form #frm = "ngForm" (ngSubmit)="addItem(frm)">
+<form #frm = "ngForm" (ngSubmit)="addItem(frm)" *ngIf="!toggleForm">
   <h2>Add Item</h2>
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
@@ -9,6 +9,19 @@
     <input ngModel type="number" class="form-control" name="itemQuantity" placeholder="Add quantity">
   </div>
   <button type="submit" name="button" class="btn btn-success">Add Item</button>
+</form>
+
+<form #edtfrm = "ngForm" (ngSubmit)="editItem(edtfrm)" *ngIf="toggleForm">
+  <h2>Edit Item</h2>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input [ngModel]="selectedItem.itemName" type="text" class="form-control" name="itemName" placeholder="Add name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Quantity</label>
+    <input [ngModel]="selectedItem.itemQuantity" type="number" class="form-control" name="itemQuantity" placeholder="Add quantity">
+  </div>
+  <button type="submit" name="button" class="btn btn-success">Save</button>
 </form>
 
 <h2>Shopping List</h2>
@@ -24,7 +37,7 @@
       {{item.itemQuantity}}
     </div>
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary" name="button">Edit</button>
+      <button type="button" class="btn btn-primary" name="button" (click)="showEditForm(item)" [disabled]="toggleForm">Edit</button>
     </div>
     <div class="col-md-3 mb-1">
       <button type="button" class="btn btn-danger" name="button" (click)="deleteItem(item._id)">Delete</button>

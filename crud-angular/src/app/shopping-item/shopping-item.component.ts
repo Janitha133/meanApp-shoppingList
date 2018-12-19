@@ -10,6 +10,8 @@ import { DataService } from '../data.service';
 export class ShoppingItemComponent implements OnInit {
 
   shoppingItemList: Item[] = [];
+  selectedItem: Item;
+  toggleForm: boolean = false;
 
   constructor(private dataService: DataService) { }
 
@@ -46,6 +48,11 @@ export class ShoppingItemComponent implements OnInit {
           }
         }
       })
+  }
+
+  showEditForm(item){
+    this.selectedItem = item;
+    this.toggleForm = !this.toggleForm;
   }
   
   ngOnInit() {
