@@ -62,6 +62,7 @@ export class ShoppingItemComponent implements OnInit {
         console.log('Original item to be updated with old value:'+result);
         this.getItems();
       })
+      this.toggleForm = !this.toggleForm;
   }  
 
   showEditForm(item){
