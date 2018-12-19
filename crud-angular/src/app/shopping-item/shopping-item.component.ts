@@ -50,6 +50,20 @@ export class ShoppingItemComponent implements OnInit {
       })
   }
 
+  editItem(edtfrm){
+    let newItem: Item = {
+      _id: this.selectedItem._id,
+      itemName: edtfrm.value.itemName,
+      itemQuantity: edtfrm.value.itemQuantity,
+      itemBought: this.selectedItem.itemBought
+    }
+    this.dataService.updateShoppingItem(newItem)
+      .subscribe( result => {
+        console.log('Original item to be updated with old value:'+result);
+        this.getItems();
+      })
+  }  
+
   showEditForm(item){
     this.selectedItem = item;
     this.toggleForm = !this.toggleForm;
